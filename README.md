@@ -36,10 +36,33 @@ By converting long articles into short and informative summaries, the project he
 
 ---
 
-## ⚙️ Model Architecture
+## 📊 Dataset
 
-- Base Model: BART
-- Fine-tuning Method: LoRA
-- Dataset: CNN/DailyMail
-- Framework: Transformers
-- Deployment: Streamlit
+For training and evaluating the summarization model, this project uses the **CNN/DailyMail** dataset available on 🤗 Hugging Face.
+
+Dataset link: https://huggingface.co/datasets/cnn_dailymail
+Original paper: https://arxiv.org/abs/1506.03340
+
+The CNN/DailyMail dataset is one of the most widely used benchmarks for **abstractive text summarization** tasks. It contains news articles collected from CNN and Daily Mail websites, along with human-written summaries that highlight the key points of each article.
+
+The dataset consists of approximately:
+
+* **287,000 training samples**
+* **13,000 validation samples**
+* **11,000 test samples**
+
+Each sample includes a news article and its corresponding summary.
+
+### Dataset Structure
+
+| id      | article                                                                                                                 | highlights                                                                |
+| ------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| train_1 | The economy is showing signs of recovery after months of uncertainty. Analysts believe the market may stabilize soon... | Analysts say the economy may recover soon after months of uncertainty.    |
+| train_2 | Scientists have discovered a new species of deep-sea fish living near hydrothermal vents in the Pacific Ocean...        | Researchers discover a new deep-sea fish species near hydrothermal vents. |
+| ...     | ...                                                                                                                     | ...                                                                       |
+
+* **article** → The full news article text
+* **highlights** → The ground-truth summary written by humans
+
+These article–summary pairs allow the model to learn how to generate concise summaries while preserving the most important information from long news articles.
+
